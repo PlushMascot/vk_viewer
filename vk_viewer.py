@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import os
 import click
-from app import create_app, db
-from app.models import User, Role
 from flask_migrate import Migrate
+from .app import create_app, db
+from .app.models import User, Role
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -24,7 +24,3 @@ def test(test_names):
     else:
         tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
-
-
-if __name__ == '__main__':
-    app.run()
