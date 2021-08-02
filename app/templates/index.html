@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}VkViewer{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <p>Для работы приложения необходимо авторизоваться и добавить разрешения</p>
+</div>
+<a href="/auth.aspx" class="btn btn-primary"> Вход через ВКонтакте</a>
+{% endblock %}
