@@ -5,9 +5,39 @@
 import requests
 import json
 import csv
-import pandas as pd
+import vk_api
 from time import sleep
 from datetime import datetime
+from.credentials import APP_ID, CLIENT_SECRET
+
+# URL, который использоются при получении code на первом этапе авторизации и получении access_token
+
+
+# def get_groups_info(auth_code: str) -> [str]:
+#     """
+#     :param auth_code:
+#     :return: list of ids for each of user's groups
+#     """
+#
+#     vk_session = vk_api.VkApi(app_id=APP_ID, client_secret=CLIENT_SECRET)
+#     try:
+#         vk_session.code_auth(auth_code, redirect_uri)
+#     except vk_api.AuthError as error_msg:
+#         print(error_msg)
+#         return
+#     vk = vk_session.get_api()
+#     print(vk_session.token['user_id'])
+#     print(vk_session.token['access_token'])
+#     groups = vk.groups.get()
+#     if groups.get('count', 0) > 0:
+#         groups_ids = groups['items']
+#     else:
+#         return
+#
+#     groups_info = vk.groups.getById(group_ids=groups_ids)
+#     groups_info = groups_info['response']['items']
+#
+#     return groups_info
 
 
 def write_json(data, filename):
@@ -58,9 +88,6 @@ if __name__ == "__main__":
 
     # d_u_ra
     # group_id = -26945644
-
-    # deaf2reality
-    group_id = -93871679
 
     offset = 0
     ACCESS_TOKEN = '1b646275d5c1b7d058a44f667100421273d435fbd17da19cbc208383fd952c24c818b60c61ea7248c907c'

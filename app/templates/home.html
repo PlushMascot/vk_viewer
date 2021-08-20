@@ -4,5 +4,22 @@
 {% block title %}VkViewer{% endblock %}
 
 {% block page_content %}
-<p>hi {{code}}</p>
+
+<ul class="groups">
+    {% for group_info in groups_info %}
+    <li class="group">
+        <div class="group-info">
+            <a href="id{{group_info.id}}">
+                <img class="img-rounded profile-thumbnail"
+                    src="{{ group_info.photo_50 }}">
+            </a>
+            <div class="group-name">
+                <a href="id{{group_info.id}}">
+                    {{ group_info.name }}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</ul>
+
 {% endblock %}
