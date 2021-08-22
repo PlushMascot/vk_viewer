@@ -40,7 +40,7 @@ def signup():
     return redirect(url_for('.home'), code=302)
 
 
-@main.route('/home', methods=['GET'])
+@main.route('/home', methods=['GET', 'POST'])
 def home():
     vk_session = vk_api.VkApi(token=current_user.social_token)
     vk = vk_session.get_api()
@@ -54,6 +54,20 @@ def home():
     groups_info_list = vk.groups.getById(group_ids=groups_ids)
 
     return render_template('home.html', groups_info=groups_info_list)
+
+
+@main.route('/listing', methods=['GET', 'POST'])
+def group_posts():
+    vk_session = vk_api.VkApi(token=current_user.social_token)
+    vk = vk_session.get_api()
+
+    posts = vk.wall.get(owner_id=f"-{2}", count=2)
+    if posts.get('count', 0) > 0:
+        posts = posts['items']
+    else:
+        posts = []
+
+    return render_template('group_posts.html', posts=posts)
 
 
 @main.route("/logout")
