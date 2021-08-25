@@ -58,6 +58,7 @@ def home():
 
 @main.route('/listing', methods=['GET', 'POST'])
 def group_posts():
+    breakpoint()
     vk_session = vk_api.VkApi(token=current_user.social_token)
     vk = vk_session.get_api()
 
