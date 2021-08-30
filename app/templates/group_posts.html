@@ -1,19 +1,41 @@
 {% extends "home.html" %}
 
+{% block head %}
+    {{ super() }}
+    <script src="https://kit.fontawesome.com/9970ed58b0.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+
 {% block home_content %}
-<ul class="posts">
+<ul class="list-group list-group-flush">
     {% for post in posts %}
-    <li class="post">
-        <div class="post-info">
-            <div class="post-date">
-                <a href="{{post.id}}">
+    <li class="list-group-item">
+        <div class="d-flex align-content-center flex-column">
+            <div class="align-self-start">
+                <a href="{{post.url}}" target="_blank" rel="noopener noreferrer">
                     {{ post.date }}
                 </a>
             </div>
-            <div class="post-text">
-                <p>{{ post.text }}</p>
+
+            <p class="mb-1" style="white-space: pre-wrap">{{ post.text }}</p>
+            <div class="d-flex w-100 justify-content-between">
+                <small>
+                    {{ post.likes }} <i class="fas fa-heart"></i>
+                </small>
+                <small>
+                    {{ post.reposts }} <i class="fas fa-share"></i>
+                </small>
+                <small>
+                    {{ post.comments }} <i class="fas fa-comment"></i>
+                </small>
+                <small>
+                    {{ post.views }} <i class="fas fa-eye"></i>
+                </small>
             </div>
+
         </div>
+    {% else %}
+        <h3>Ваш запрос вернул 0 результатов.</h3>
     {% endfor %}
 </ul>
 {% endblock %}

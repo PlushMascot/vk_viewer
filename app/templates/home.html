@@ -9,10 +9,11 @@
         <div class="col-4">
             <div class="order-filter">
                 <p>Sort by</p>
-                <select id="select_order_filter">
-                      <option value="likes" selected="selected">By likes</option>
-                      <option value="reposts">By reposts</option>
-                      <option value="comments">By comments</option>
+                <select id="select_order_filter" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <option value="likes" selected="selected">By likes</option>
+                    <option value="reposts">By reposts</option>
+                    <option value="comments">By comments</option>
+                    <option value="views">By views</option>
                 </select>
             </div>
             <div class="date-filter">
@@ -25,16 +26,16 @@
         </div>
         <div class="col-8">
             {% block home_content %}
-            <ul class="groups">
+            <ul class="list-group list-group-flush">
                 {% for group_info in groups_info %}
-                <li class="group">
-                    <div class="group-info">
-                        <a onclick="addURL(this)" href="id{{group_info.id}}">
+                <li class="list-group-item">
+                    <div class="d-flex align-items-center">
+                        <div class="group-image mx-1">
                             <img class="img-rounded profile-thumbnail"
-                                src="{{ group_info.photo_50 }}">
-                        </a>
-                        <div class="group-name">
-                            <a onclick="addURL(this)" href="id{{group_info.id}}">
+                            src="{{ group_info.photo_50 }}">
+                        </div>
+                        <div class="group-name mx-1" style="font-size: 1.4em;">
+                            <a class="text-dark" onclick="addURL(this)" href="{{group_info.screen_name}}" id="{{group_info.id}}">
                                 {{ group_info.name }}
                             </a>
                         </div>
@@ -55,6 +56,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script type="text/javascript" src="../static/date_range.js"></script>
-<script type="text/javascript" src="../static/home_page_filters_listener.js"></script>
+<script type="text/javascript" src="../static/addURL.js"></script>
 {% endblock %}
 
