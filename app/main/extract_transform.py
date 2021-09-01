@@ -6,21 +6,21 @@ import json
 import csv
 import vk_api
 from datetime import datetime
-from .logger import log_decorator
+from .logger import log_extraction
 
 
 def wall_binary_search(vk, query):
     pass
 
 
-@log_decorator("default_log")
+@log_extraction("logger")
 def wall_linear_search(vk, query):
     """
     Search posts that match query from latest to earliest.
     Iteratively requesting more posts if query conditions are not met.
     :param vk:
     :param query:
-    :return:
+    :return: List[Dict]
     """
 
     all_posts = []
