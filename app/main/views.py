@@ -1,5 +1,4 @@
 import vk_api
-import logging
 from flask import render_template, session, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 
@@ -7,10 +6,7 @@ from .. import db
 from ..models import User
 from . import main
 from .extract_transform import wall_linear_search
-from .credentials import APP_ID, CLIENT_SECRET
-
-
-redirect_uri = "http://127.0.0.1:5000/signup"
+from .credentials import APP_ID, CLIENT_SECRET, REDIRECT_URI
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -18,7 +14,7 @@ def index():
     if current_user.is_authenticated:
         return redirect(url_for('.home'))
 
-    return render_template('index.html', redirect_uri=redirect_uri)
+    return render_template('index.html', redirect_uri=REDIRECT_URI)
 
 
 @main.route('/signup', methods=['GET'])
@@ -26,9 +22,8 @@ def signup():
 
     code = request.args.get('code')
     vk_session = vk_api.VkApi(app_id=APP_ID, client_secret=CLIENT_SECRET)
-    vk_session.code_auth(code, redirect_uri)
-    vk = vk_session.get_api()
-    vk_id = vk_session.token['user_id']
+    vk_session.code_auth(code, REDIRECT_URI)
+    vk_id = str(vk_session.token['user_id'])  # returns int otherwise
     vk_token = vk_session.token['access_token']
 
     user = User.query.filter_by(social_id=vk_id).first()

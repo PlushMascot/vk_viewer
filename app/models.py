@@ -6,7 +6,7 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     social_id = db.Column(db.String(64), nullable=False, unique=True)
-    social_token = db.Column(db.String(64), nullable=False)
+    social_token = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
         return '<User id=%r; social_id=%r>' % (self.id, self.social_id)

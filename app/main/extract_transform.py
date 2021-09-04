@@ -6,14 +6,12 @@ import json
 import csv
 import vk_api
 from datetime import datetime
-from .logger import log_extraction
 
 
 def wall_binary_search(vk, query):
     pass
 
 
-@log_extraction("logger")
 def wall_linear_search(vk, query):
     """
     Search posts that match query from latest to earliest.
