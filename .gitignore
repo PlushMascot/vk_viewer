@@ -115,3 +115,4 @@ dmypy.json
 app/main/credentials.py
 data-dev.sqlite
 .idea/workspace.xml
+.idea/workspace.xml
